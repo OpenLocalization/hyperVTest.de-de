@@ -1,32 +1,32 @@
-ms.ContentId: 4981828d-1a08-4d8c-a99d-874a926a153f
-title: PowerShell to Docker Comparison
+MS. ContentId: 4981828d-1a08-4d8c-a99d-874a926a153f
+Titel: PowerShell Docker Vergleich
 
-#PowerShell to Docker comparison for managing Windows Server Containers
+#PowerShell zum Vergleich der Docker für die Verwaltung von Windows Server-Container
 
-There are many ways to manage Windows Server Containers using both in-box Windows tools (PowerShell, in this preview) and Open Source management tools such as Docker.
-Guides outlining both individually available here:
+Es gibt viele Verfahren zum Verwalten von Windows Server-Container mit integrierten Windows-Tools (in dieser Vorschau PowerShell) und Open-Source-Verwaltungstools, wie z. B. Docker.
+Führungslinien Gliedern beide einzeln erhältlich hier:
 
-*   [Manage Windows Server Containers with Docker](../quick_start/manage_docker.md)
-*   [Manage Windows Server Containers with PowerShell](../quick_start/manage_powershell.md)
+*   [Verwalten von Windows Server-Container mit Docker](../quick_start/manage_docker.md)
+*   [Verwalten von Windows Server-Container mit PowerShell](../quick_start/manage_powershell.md)
 
-This page is a more in depth reference comparing the Docker tools and PowerShell management tools.
+Diese Seite ist einem mehr Tiefe Referenz Vergleich von Docker-Tools und PowerShell-Verwaltungstools.
 
-##PowerShell for containers versus Hyper-V VMs
+##PowerShell für Container im Vergleich zu Hyper-V-Computern
 
-You can create, run, and interact with Windows Server Containers using PowerShell cmdlets.
-Everything you need to get going is available in-box.
+Erstellen können, ausführen und mit Windows Server-Container mit PowerShell-Cmdlets interagieren.
+Alles, was Sie benötigen den Einstieg wird im Feld verfügbar.
 
-If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you.
-A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module.
-Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.
-There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
+Wenn Sie Hyper-V-PowerShell verwendet haben, sollte das Design der Cmdlets Recht vertraut sein.
+Ein Großteil der Workflow ist ähnlich wie eine virtuelle Maschine mit dem Hyper-V-Modul verwaltet.
+Anstelle von `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, Sie haben `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.
+Es gibt einige Container-spezifische Cmdlets und Parameter, aber die allgemeine Lebenszyklus und Verwaltung von Windows-Container sieht in etwa wie eine Hyper-V-VM.
 
-##How does PowerShell management compare to Docker?
+##Wie Vergleich PowerShell Management im zu Docker?
 
-The Containers PowerShell cmdlets expose an API that isn’t quite the same as Docker's; as a general rule, the cmdlets are more granular in operation.
-Some Docker commands have pretty straightforward parallels in PowerShell:
+Die Container-PowerShell-Cmdlets verfügbar machen eine API, die nicht ganz identisch mit der Docker ist. die Cmdlets sind in der Regel genauer Vorgang.
+Einige Befehle Docker sind unkompliziert Parallels in PowerShell:
 
-| Docker command| PowerShell Cmdlet|
+| Docker-Befehl| PowerShell-Cmdlets|
 |----|----|
 | `docker ps -a`| `Get-Container`|
 | `docker images`| `Get-ContainerImage`|
@@ -38,161 +38,161 @@ Some Docker commands have pretty straightforward parallels in PowerShell:
 | `docker save`| `Export-ContainerImage`|
 | `docker start`| `Start-Container`|
 | `docker stop`| `Stop-Container`|
-The PowerShell cmdlets are not an exact perfect parity, and there are a fair number of commands that we’re not providing PowerShell replacements for* (notably `docker build` and `docker cp`).
-But what might leap out at you is that there’s no single one-line replacement for `docker run`.
+Die PowerShell-Cmdlets sind keine genaue perfekte Parität, und es gibt eine große Anzahl von Befehlen, die wir nicht PowerShell Ersatz für bereitstellen * (insbesondere `docker build` und `docker cp`).
+Aber was Ihnen sofort auffallen möglicherweise darin, dass es kein einzelnes einzeilige Ersatz für `docker run`.
 
-\* Subject to change.
+\ * Vorbehalten.
 
-###But I need docker run! What’s going on?
+###Aber ich Docker ausführen! Was ist passiert?
 
-We’re doing a couple things here to provide a slightly more familiar interaction model for users who know their way around PowerShell already.
-Of course, if you’re used to the way docker operates, this will be a bit of a mental shift.
+Wir machen, ein paar Dinge, die eine etwas vertrauter Interaktionsmodell für Benutzer bereitstellen, die ihre PowerShell bereits vertraut sind.
+Wenn Sie die Art und Weise Docker arbeitet verwendet, wird dies natürlich etwas ein Umdenken sein.
 
-1.  The lifecycle of a container in the PowerShell model is slightly different.
-    In the Containers PowerShell module, we expose the more granular operations of `New-Container` (which creates a new container that’s stopped) and `Start-Container`.
+1.  Der Lebenszyklus eines Containers im PowerShell-Modell ist etwas anders.
+    Im Container PowerShell-Modul wir die präzisere Vorgänge verfügbar machen `New-Container` (wodurch erstellt einen neuen Container, der beendet wurde) und `Start-Container`.
     
-    In between creating and starting the container, you can also configure the container’s settings; for TP3, the only other configuration we’re planning to expose is the ability to set the network connection for the container.
-    using the (Add/Remove/Connect/Disconnect/Get/Set)-ContainerNetworkAdapter cmdlets.
-2.  You can’t currently pass a command to be run inside the container on start. However, you can still get an interactive PowerShell session to a running container using `Enter-PSSession -ContainerId <ID of a running container>`, and you can execute a command inside a running container using `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }` or `Invoke-Command -ContainerId <container id> -FilePath <path to script>`.  
-    Both of these commands allow the optional `-RunAsAdministrator` flag for high privilige actions.  
+    Zwischen erstellen, und starten den Container, können Sie auch den Container Einstellungen konfigurieren. für TP3 ist nur anderen Konfigurationen, die wir bereitstellen möchten die Möglichkeit, die Netzwerkschnittstelle für den Container festlegen.
+    verwenden die (hinzufügen/entfernen/Verbindung herstellen/trennen/Get/Set)-ContainerNetworkAdapter-Cmdlets.
+2.  Derzeit kann keinen auszuführenden Befehl innerhalb des Containers auf "Start" übergeben werden. Allerdings können Sie immer noch eine interaktive PowerShell-Sitzung mit einem ausgeführten Container abrufen `Enter-PSSession -ContainerId <ID of a running container>`, und Sie können einen Befehl innerhalb einer ausgeführten Container mit ausführen `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }` oder `Invoke-Command -ContainerId <container id> -FilePath <path to script>`.  
+    Beide Befehle ermöglichen das optionale `-RunAsAdministrator` Kennzeichen für hohe Privilige Aktionen.  
 
-##Caveats and known issues
+##Vorbehalte und bekannte Probleme
 
-1.  Right now, the Containers cmdlets have no knowledge about any containers or images created through Docker, and Docker does not know anything about containers and images created through the PowerShell.
-    If you created it in Docker, manage it with Docker; if you created it through PowerShell, manage it through PowerShell.
-2.  We have quite a bit of work we'd like to do to improve the end user experience -- better error messages, better progress reporting, invalid event strings, and so forth.
-    If you happen to run into a situation where you wish you were getting more or better info, please feel free to send suggestions to the forums.
+1.  Jetzt, die Container-Cmdlets haben keine Kenntnis über Container oder Bilder, die durch Docker erstellt und Docker weiß nicht, alles zu Containern und Images, die über die PowerShell erstellt.
+    Wenn Sie in der Docker erstellt, mit der Docker verwalten; Wenn Sie es über PowerShell erstellt haben, können verwalten Sie sich über PowerShell.
+2.  Wir haben eine ziemlich viel Arbeit, die wir tun, damit um der Endbenutzer – verbesserte Fehlermeldungen, bessere Fortschrittsberichte, ungültiges Ereigniszeichenfolgen usw. zu optimieren möchten.
+    Wenn Sie eine Situation auftreten versehentlich, wo sollen Sie waren Weitere erste, oder Informationen besser, wir gerne Vorschläge zu den Foren zu senden.
 
-##A quick runthrough
+##Eine schnelle runthrough
 
-Here is a walk through of some common workflows.
+Im folgenden wird erörtert einige allgemeine Workflows.
 
-This assumes you've installed an OS container image named "ServerDatacenterCore" and created a virtual switch named "Virtual Switch" (using New-VMSwitch).
+Dabei wird vorausgesetzt, Sie ein Betriebssystemabbild-Container mit dem Namen "ServerDatacenterCore" installiert haben, und erstellt einen virtuellen Switch mit dem Namen "Virtueller Switch" (mit dem New-VMSwitch).
 
-``` PowerShell
+''' PowerShell
 
-###1. Enumerating images
+###1 Auflisten von Bildern
 
-#At this point, you can enumerate the images on the system:
+#An diesem Punkt können Sie die Bilder auf dem System auflisten:
 
 Get-ContainerImage
 
-#Get-ContainerImage also accepts filters.
+#Get-ContainerImage nimmt auch filtern.
 
-#For example, this will return all container images whose Name starts with S (case-insensitive):
+#Beispielsweise wird alle Container Bilder zurückgegeben, deren Name mit S (Groß-/Kleinschreibung) beginnt:
 
-Get-ContainerImage -Name S*
+Get-ContainerImage-Namen S *
 
-#You can save the results of this to a variable.
+#Sie können die Ergebnisse dieser einer Variablen speichern.
 
-#(If you're not familiar with PowerShell, the "$" denotes a variable.)
+#(Wenn Sie nicht mit PowerShell vertraut sind, kennzeichnet das "$" eine Variable.)
 
-$baseImage = Get-ContainerImage -Name ServerDatacenterCore
+$baseImage = Get-ContainerImage-Namen ServerDatacenterCore
 $baseImage
 
-###2. Creating and enumerating containers
+###2. Erstellen und Auflisten von Containern
 
-#Now, we can create a new container using this image:
+#Jetzt können wir einen neuen Container mit diesem Abbild erstellen:
 
-New-Container -Name "MyContainer" -ContainerImage $baseImage -SwitchName "Virtual Switch"
+Neuen Container - Name "MyContainer" - ContainerImage $baseImage - SwitchName "Virtueller Switch"
 
-#Now we can enumerate all containers.
+#Jetzt können wir alle Container aufzählen.
 
 Get-Container
 
-#Similarly, we can save this container to a variable:
+#Auf ähnliche Weise speichern wir dieses Containers zu einer Variablen:
 
-$container1 = Get-Container -Name "MyContainer"
+$container1 = Get-Container-Namen "MyContainer"
 
-###3. Starting containers, interacting with running containers, and stopping containers
+###3. Starten von Containern, die Interaktion mit dem Ausführen von Containern und Beenden von Containern
 
-#Now let's go ahead and start the container.
+#Nun beginne, und starten Sie den Container.
 
-Start-Container -Name "MyContainer"
+Start-Container-Namen "MyContainer"
 
-#(We could've also started this container using "Start-Container -Container $container1".)
+#(Wir könnten haben auch gestartet diesen Container mit "Start-Container-Container $container1".)
 
-#With the container now running, let's go ahead and enter an interactive PowerShell session:
+#Geben Sie mit dem Container, der ausgeführt wird eine interaktive PowerShell-Sitzung und wir:
 
-Enter-PSSession -ContainerId $container1.Id
+Geben Sie-PSSession - des Elements $container1. ID
 
-#This should eventually bring up a PowerShell prompt from inside the container.
+#Dadurch sollte schließlich eine Aufforderung PowerShell aus dem Container angezeigt.
 
-#You can try all the things that you did in the interactive cmd prompt given by "docker run -it".
+#Sie können versuchen, alle Elemente, die bei der angegebenen interactive Cmd Prompt "Docker run - es".
 
-#For now, just to prove we've been here, we can create a new file:
+#Jetzt können wir nur um zu beweisen, dass wir hier Waren eine neue Datei erstellen:
 
-cd \
-mkdir Test
-cd Test
-echo "hello world" > hello.txt
+CD \
+Mkdir Test
+Test-CD
+Echo "Hello World" > hello.txt
 exit
 
-#Now we should be back in the outside world. Even though we've exited the PowerShell session,
+#Wir sollten jetzt wieder in der Außenwelt sein. Obwohl wir die PowerShell-Sitzung beendet haben,
 
-#the container itself is still running, as you can see by printing out the container again:
+#der Container selbst wird weiterhin ausgeführt, wie Sie sehen können, indem Sie den Container erneut ausgeben:
 
 $container1
 
-#Before we can commit this container to a new image, we need to stop the container.
+#Bevor wir uns dieses Containers ein neues Abbild verpflichten können, müssen wir den Container zu beenden.
 
-#Let's do that now.
+#Das machen wir jetzt.
 
-Stop-Container -Container $container1
+Stop-Container - Container $container1
 
-###4. Creating a new container image
+###4. Erstellen ein neues Container-Bild
 
-#And now let's commit it to a new image.
+#Und nun lassen Sie uns einen commit in ein neues Bild.
 
-$image1 = New-ContainerImage -Container $container1 -Publisher Test -Name Image1 -Version 1.0
+$image1 = neue ContainerImage-Container $container1-Verleger Test - Namen Image1-Version 1.0
 
-#Enumerate all the images again, for sanity's sake:
+#Zählen Sie alle Bilder erneut auf, aus Gründen der Nerven:
 
 Get-ContainerImage
 
-#Rinse and repeat! Make another container based on the new image.
+#Und wiederholen. Stellen Sie einen anderen Container basierend auf das neue Bild.
 
-$container2 = New-Container -Name "MySecondContainer" -ContainerImage $image1 -SwitchName "Virtual Switch"
+$container2 = neuen Container-Namen "MySecondContainer" - ContainerImage $image1 - SwitchName "Virtueller Switch"
 
-#(If you like, you can start the second container and verify that the new file
+#(Falls gewünscht, können Sie beginnen Sie den zweiten Container und überprüfen Sie, ob die neue Datei
 
-#"\Test\hello.txt" is there as expected.)
+#"\Test\hello.txt" gibt es erwartungsgemäß.)
 
-###5. Removing a container
+###5. Entfernen eines Containers
 
-#The first container we created is now stopped. Let's get rid of it:
+#Der erste erstellte Container wird jetzt beendet. Entfernen Sie es:
 
-Remove-Container -Container $container1
+Entfernen eines Containers-Container $container1
 
-#And confirm that it's gone:
+#Und dann ist es bestätigen:
 
 Get-Container
 
-###6. Exporting, removing, and importing images
+###6. Exportieren, entfernen und Importieren von Bildern
 
-#For images that aren't the base OS image, we can export them into an .appx package file.
+#Für Bilder, die die grundlegende Betriebssystemabbild sind, können wir sie in einer Paketdatei AppX exportieren.
 
-Export-ContainerImage -Image $image1 -Path "C:\exports"
+Export-ContainerImage-$image1 Image-Pfad "C:\exports"
 
-#This should create a .appx file in the C:\exports folder.
+#Dies sollte eine AppX-Datei im Ordner C:\exports erstellen.
 
-#If you've given your image the same publisher, name, and version we used earlier,
+#Wenn Sie Publisher, Name und Version des Abbilds gegeben haben wir bereits verwendet werden,
 
-#you'd expect the resulting .appx to be named "CN=Test_Image1_1.0.0.0.appx".
+#erwarten Sie benannt werden, die sich ergebende AppX "CN = Test_Image1_1.0.0.0.appx".
 
-#Before we can try importing the image again, we need to remove the image.
+#Bevor wir das Abbild erneut zu importieren versuchen können, müssen wir das Bild zu entfernen.
 
-#(If you have any running containers that depend on this image, you'll want to stop them first.)
+#(Wenn Sie Container ausgeführt, die von diesem Bild abhängen haben, sollten Sie zunächst beenden).
 
-Remove-ContainerImage -Image $image1
+Remove-ContainerImage-Image $image1
 
-#Now let's import the image again:
+#Jetzt sehen wir erneut importieren Sie das Bild:
 
-Import-ContainerImage -Path C:\exports\CN=Test_Image1_1.0.0.0.appx
+Import-ContainerImage-Pfad C:\exports\CN=Test_Image1_1.0.0.0.AppX
 
-#We'd previously created a container dependent on this image. You should be able to start it:
+#Wir hatten einen Container zuvor abhängig von diesem Abbild erstellt. Sie können können sie starten:
 
-Start-Container -Container $container2 
+Start-Container-Container $container2 
 
 
 ```
@@ -231,13 +231,13 @@ function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name",
 
 ##Docker
 
-Windows Server Containers can be managed with Docker commands.
-While Windows containers should be comparable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.
-Others simply haven't been tested (we're getting there).
+Windows Server-Container können mit Docker-Befehlen verwaltet werden.
+Während Windows Container ihren Gegenstücken Linux vergleichbar sein und sollte die gleiche Verwaltung über Docker auftreten, stehen einige Docker-Befehle, die einfach mit einem Windows-Container nicht sinnvoll sind.
+Andere einfach noch nicht getestet wurden (wir gehen vorhanden).
 
-In an effort to not duplicate the API documentation available in Docker, here is a link to their management APIs.
-Their walkthroughs are fantastic.
+In dem Bestreben, die API-Dokumentation Docker nicht duplizieren ist hier ein Link zu ihrer Verwaltungs-APIs.
+Die exemplarischen Vorgehensweisen sind fantastisch.
 
-We're tracking things that do and don't work in the Docker APIs in our Work in Progress document.
+Wir überwachen die Dinge, die funktionieren und nicht in die Docker-APIs in unser Dokument In Bearbeitung.
 
 

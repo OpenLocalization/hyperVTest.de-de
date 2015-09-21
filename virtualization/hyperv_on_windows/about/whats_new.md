@@ -1,22 +1,22 @@
-ms.ContentId: 52DAFFBE-40F5-46D2-96F3-FB8659581594 
-title: What's New in Hyper-V for Windows 10
+MS. ContentId: 52DAFFBE-40F5-46D2-96F3-FB8659581594 
+Titel: Neues in Hyper-V für Windows 10
 
-#What's New for Hyper-V on Windows 10
+#Was ist neu in Hyper-V auf Windows 10
 
-This topic explains the new and changed functionality in Hyper-V on Windows 10®.
+Dieses Thema erläutert die neue und geänderte Funktionen in Hyper-V auf 10 für Windows ®.
 
 ##Windows PowerShell Direct
 
-There is a now an easy and reliable way to run Windows PowerShell commands inside a virtual machine from the host operating system.
-There are no network or firewall requirements or special configuration.
-It works regardless of your remote management configuration.
-To use it, you must run Windows 10 or Windows Server Technical Preview on the host and the virtual machine guest operating system.
+Es ist nun eine einfache und zuverlässige Möglichkeit zum Ausführen von Windows PowerShell-Befehle in einem virtuellen Computer aus dem Hostbetriebssystem.
+Es gibt keine Netzwerk- oder Firewall-Anforderungen oder eine spezielle Konfiguration.
+Dies funktioniert unabhängig von der Konfiguration der remote-Verwaltung.
+Verwenden möchten, müssen Sie Windows 10 oder Technical Preview für Windows Server, auf dem Host und das Gastbetriebssystem des virtuellen Computers ausführen.
 
-To create a PowerShell Direct session, use one of the following commands:
+Verwenden Sie zum Erstellen einer PowerShell-Direct-Sitzungs einen der folgenden Befehle aus:
 
-``` PowerShell
-Enter-PSSession -VMName VMName
-Invoke-Command -VMName VMName -ScriptBlock { commands }
+''' PowerShell
+Geben Sie-PSSession - VMName VMName
+Invoke-Command - VMName VMName - ScriptBlock {Befehle}
 
 
 ```
@@ -92,12 +92,12 @@ Get-VM * | Format-Table Name, Version
 ```
 
 
-####How do I upgrade the configuration version of a virtual machine?
+####Wie aktualisiere ich die Konfigurationsversion eines virtuellen Computers?
 
-From an elevated Windows PowerShell command prompt, run one of the following commands:
+Führen Sie ein Windows PowerShell-Eingabeaufforderung einen der folgenden Befehle:
 
-``` PowerShell
-Update-VmConfigurationVersion <vmname>
+''' PowerShell
+Update-VmConfigurationVersion < Vmname >
 
 
 ```
@@ -109,60 +109,60 @@ Update-VmConfigurationVersion <vmobject>
 
 ```
 
-**Important: **
+** Wichtig: **
 
-*   After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
-*   You can't downgrade the virtual machine configuration version from version 6 to version 5.
-*   You must turn off the virtual machine to upgrade the virtual machine configuration.
-*   After the upgrade, the virtual machine uses the new configuration file format.
-    For more information, see New virtual machine configuration file format.
+*   Nach der Aktualisierung der virtuellen Maschine Konfigurationsversion verschieben keine der virtuellen Maschine auf einem Host, die Windows 8.1 ausgeführt wird.
+*   Die Version von Virtual Machine-Konfiguration von Version 6 auf Version 5 kann nicht heruntergestuft werden.
+*   Sie müssen die virtuelle Maschine so aktualisieren Sie die Konfiguration des virtuellen Computers deaktivieren.
+*   Nach dem Upgrade verwendet die virtuelle Maschine im neuen Dateiformat für die Konfiguration.
+    Weitere Informationen finden Sie unter neue virtuelle Maschine Konfigurationsdateiformat.
 
-##New virtual machine configuration file format
+##Neue virtuelle Maschine Konfigurationsdateiformat
 
-Virtual machines now have a new configuration file format which is designed to increase the efficiency of reading and writing virtual machine configuration data.
-It's also designed to reduce the potential for data corruption if there's a storage failure.
-The new configuration files use the .VMCX extension for virtual machine configuration data and the .VMRS extension for runtime state data.
+Virtuelle Computer verfügen jetzt über ein neues Format für Konfiguration vorgesehen ist, um die Effizienz des lesen und Schreiben von Konfigurationsdaten für die virtuelle Maschine zu erhöhen.
+Dieses Konzept auch potenzielle Datenverluste verringern, wenn Speicherausfalls vorhanden ist.
+Die neue Konfiguration Dateien der. VMCX-Erweiterung für die Konfigurationsdaten für die virtuellen Computer und die. VMRS-Erweiterung für die Daten über den Laufzeitzustand.
 
-> **Important:** The .VMCX file is a binary format.
-> Directly editing the .VMCX or .VMRS file isn't supported.
+> **Wichtig:** Die. VMCX-Datei ist ein binäres Format.
+> Direktes Bearbeiten der. VMCX oder. VMRS Datei wird nicht unterstützt.
 > 
 
-##Integration Services delivered through Windows Update
+##Integrationsservices, die über Windows Update bereitgestellt
 
-Updates to integration services for Windows guests are now distributed through Windows Update.
+Updates für die Integrationsdienste für Windows-basierte Gäste werden jetzt über Windows Update verteilt.
 
-Integration components (also called integration services) are the set of synthetic drivers which allow a virtual machine to communicate with the host operating system.
-They control services ranging from time sync to guest file copy.
-We've been talking to customers about integration component installation and update over the past year to discover that they are a huge pain point during the upgrade process.
+Integrationskomponenten (auch als Integrationsdienste bezeichnet) handelt es sich um den Satz von synthetische Treiber, die einen virtuellen Computer für die Kommunikation mit dem Hostbetriebssystem zu ermöglichen.
+Dienste, die von der Synchronisierung bis hin zu Gast Dateikopie steuern.
+Wir haben im Gespräch wurde für Kunden Komponenteninstallation Integration und Update im vergangenen Jahr erkennen können, dass sie während der Aktualisierung ein häufiger Problempunkt sind.
 
-Historically, all new versions of Hyper-V came with new integration components.
-Upgrading the Hyper-V host required upgrading the integration components in the virtual machines as well.
-The new integration components were included with the Hyper-V host then they were installed in the virtual machines using vmguest.iso.
-This process required restarting the virtual machine and couldn't be batched with other Windows updates.
-Since the Hyper-V administrator had to offer vmguest.iso and the virtual machine administrator had to install them, integration component upgrade required the Hyper-V administrator have administrator credentials in the virtual machines -- which isn't always the case.
+In der Vergangenheit Lieferumfang in allen neue Versionen von Hyper-V-Integrationskomponenten neue.
+Aktualisieren des Hyper-V-Hosts erforderlich, die Integrationskomponenten auf den virtuellen Computern auch aktualisieren.
+Die neue Integrationskomponenten wurden mit dem Hyper-V-Host, und klicken Sie dann sie auf den virtuellen Computern mit vmguest.iso installiert wurden.
+Dieser Prozess neu gestartet werden muss der virtuellen Maschine und konnte nicht mit anderen Windows-Updates nicht als Batch verarbeitet werden.
+Da der Hyper-V-Administrator hatte, vmguest.iso und die Administratoren mussten sie installieren anzubieten, erforderlich, Aktualisierung der Integration der Hyper-V-Administrator über Administratoranmeldeinformationen verfügen in den virtuellen Computern – was nicht immer der Fall.
 
-In Windows 10 and going forward, all integration components will be delivered to virtual machined through Windows Update along with other important updates.
+Bearbeitet sowie andere wichtige Updates über Windows Update, Windows-10 und zukünftig alle Integration, Komponenten zu virtuell bereitgestellt werden.
 
-There are updates available today for virtual machines running:
+Updates stehen für virtuelle Maschinen, heute verfügbar:
 
-*   Windows Server 2012
-*   Windows Server 2008 R2
+*   Windows Server 2012
+*   Windows Server 2008 R2
 *   Windows 8
-*   Windows 7
+*   Windows 7
 
-The virtual machine must be connected to Windows Update or a WSUS server.
-In the future, integration component updates will have a category ID, for this release, they are listed as KBs.
+Der virtuelle Computer muss Windows Update oder einem WSUS-Server verbunden sein.
+In Zukunft müssen Komponentenupdates Integration eine Kategorie-ID in dieser Version, die sie als Knowledge Base-Artikel aufgelistet sind.
 
-To read more about how we determine applicability, see this [blog post](http://blogs.technet.com/b/virtualization/archive/2014/11/24/integration-components-how-we-determine-windows-update-applicability.aspx).
+Weitere Informationen zu wie wir Anwendbarkeit ermitteln, finden Sie in diesem [Blogbeitrag](http://blogs.technet.com/b/virtualization/archive/2014/11/24/integration-components-how-we-determine-windows-update-applicability.aspx).
 
-See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) post for a detailed walkthrough of installing integration services.
+Unter [Dieser blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) Stellen Sie eine ausführliche exemplarische Vorgehensweise für die Installation von Integrationsservices.
 
-> **Important:** The ISO image file vmguest.iso is no longer needed for updating integration components.
-> It's not included with Hyper-V on Windows 10.
+> **Wichtig:** Das ISO-Image-Datei vmguest.iso ist nicht mehr für das Aktualisieren von Integrationskomponenten erforderlich.
+> Es ist nicht mit Hyper-V auf Windows 10 enthalten.
 > 
 
-##Next Step
+##Als Nächstes
 
-[Walk through Hyper-V on Windows 10](..\quick_start\walkthrough.md)
+[Durchlaufen von Hyper-V auf Windows 10](..\quick_start\walkthrough.md)
 
 

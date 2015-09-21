@@ -1,19 +1,19 @@
-ms.ContentId: C49DA0E6-2E12-4D51-803A-31B1B5A8F85C
-title: PowerShell Reference
+MS. ContentId: C49DA0E6-2E12-4D51-803A-31B1B5A8F85C
+Titel: PowerShell-Referenz
 
-#PowerShell for Containers
+#PowerShell für Container
 
 ##Install-ContainerOSImage
 
 **NAME**      
 Install-ContainerOSImage
 
-**SYNOPSIS**  
-Installs the given WIM as a container OS image for use with Windows Server or Hyper-V Containers.
+**ZUSAMMENFASSUNG**  
+Installiert die angegebene WIM-Datei als Container BS-Image für die Verwendung mit Windows Server oder Hyper-V-Container.
 
 **SYNTAX**  
-``` PowerShell  
-Install-ContainerOSImage [-WimPath] <String> [-Force][< commonparameters >]
+''' PowerShell  
+Install-ContainerOSImage [-WIM-Pfad] < Zeichenfolge > [-Force][< commonparameters >]
 
 
 ```
@@ -48,19 +48,19 @@ Installs a base image from a WIM file into the shared central image store for th
 
 ```
 
-**INPUTS**      
-None
+**EINGABEN**      
+Keine
 
-**OUTPUTS**  
-None
+**AUSGABEN**  
+Keine
 
-**ALIASES**  
-None
+**ALIASE**  
+Keine
 
--------------------------- EXAMPLE 1 --------------------------
+-------------------------- BEISPIEL 1 --------------------------
 
-``` PowerShell
-PS C:\>Install-ContainerOSImage c:\baseimage.wim
+''' PowerShell
+PS C:\ > Installation ContainerOSImage c:\baseimage.wim
 
 
 ```
@@ -81,9 +81,9 @@ Uninstall-ContainerOSImage [-ContainerImage] <Object> [-Force]  [< CommonParamet
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -ContainerImage <Object>
+**PARAMETER**  
+''' PowerShell
+    -ContainerImage < Objekt >
 
         Required?                    true
         Position?                    0
@@ -148,9 +148,9 @@ Add-ContainerNetworkAdapter [-ContainerName] <string[]> [-CimSession <CimSession
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -299,9 +299,9 @@ Connect a container network adapter to a virtual switch
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -429,9 +429,9 @@ Disconnect a container network adapter from a virtual switch
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -551,8 +551,8 @@ Copy container image out of the local store
 
 ```
 
-**PARAMETERS**
-``` PowerShell
+**PARAMETER**
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -699,9 +699,9 @@ Enumerate containers on the current system
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -783,9 +783,9 @@ Get the host object for the container host
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    true
         Position?                    0
@@ -849,9 +849,9 @@ Get-ContainerImage [[-Name] <string>] [[-Publisher] <string>] [[-Version] <versi
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -ChildOf <ContainerImage>
+**PARAMETER**  
+''' PowerShell
+    -Unterelemente < ContainerImage >
 
         Required?                    false
         Position?                    Named
@@ -951,9 +951,9 @@ List network adapters associated with a container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -1043,8 +1043,8 @@ Import a container image that was exported from another computer
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -1143,8 +1143,8 @@ Change the location where container images are stored.  Must be a location on a 
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -1257,8 +1257,8 @@ Create a new container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -1428,9 +1428,9 @@ Create a new container image from an existing container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -1567,8 +1567,8 @@ Remove an existing container from the system
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -1698,9 +1698,9 @@ Remove a container image from the container host
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -1830,9 +1830,9 @@ Remove a network adapter from a container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -1966,9 +1966,9 @@ Set the MAC address on a network adapter in a container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
-    -CimSession <CimSession[]>
+**PARAMETER**  
+''' PowerShell
+    -CimSession < CimSession [] >
 
         Required?                    false
         Position?                    Named
@@ -2115,8 +2115,8 @@ Start a container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -2237,8 +2237,8 @@ Stop a container
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -2367,8 +2367,8 @@ Validate a container image on the container host system
 
 ```
 
-**PARAMETERS**  
-``` PowerShell
+**PARAMETER**  
+''' PowerShell
     -AsJob
 
         Required?                    false
@@ -2465,13 +2465,13 @@ Validate a container image on the container host system
         OutBuffer, PipelineVariable, and OutVariable. For more information, see
         about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-**INPUTS**  
+**EINGABEN**  
 Microsoft.Containers.PowerShell.Objects.ContainerImage
 
-**OUTPUTS**  
+**AUSGABEN**  
 Microsoft.Containers.PowerShell.Objects.ContainerImageReport
 
-**ALIASES**  
-None
+**ALIASE**  
+Keine
 
 

@@ -1,13 +1,13 @@
-ms.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
-title: Step 4: Create a Windows virtual machine from an .iso file
+MS. ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
+Titel: Schritt 4: Erstellen Sie eine virtuellen Windows-Maschine aus einer ISO-Datei
 
-#Step 4: Create a Windows virtual machine from an .iso file
+#Schritt 4: Erstellen Sie eine virtuellen Windows-Maschine aus einer ISO-Datei
 
-For this step, if you already have a .iso file for a supported 64-bit operating system, you can use that.
-If not, you can download the .iso for [Windows 8.1 Enterprise](http://www.microsoft.com/en-us/evalcenter/evaluate-windows-8-1-enterprise) and choose the 64-bit edition.
+Für diesen Schritt Wenn bereits eine .iso-Datei für einen unterstützten 64-Bit-Betriebssystem können, das Sie.
+Wenn dies nicht der Fall ist, können Sie die .iso für herunterladen [Windows 8.1 Enterprise](http://www.microsoft.com/en-us/evalcenter/evaluate-windows-8-1-enterprise) und wählen Sie die 64-Bit-Edition.
 
-1.  In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**.
-2.  In the virtual machine wizard, make the following choices:
+1.  Klicken Sie im Hyper-V-Manager auf der **Aktion** Menü > **Neu** > **Virtueller Computer**.
+2.  Stellen Sie in der Virtual Machine-Assistenten die folgenden Optionen:
     
     <table>
       <tr>
@@ -45,14 +45,14 @@ If not, you can download the .iso for [Windows 8.1 Enterprise](http://www.micros
           <b caps_internal_Id="52b190d3-efcf-4a91-ace3-69b86f7df7c2">Install an operating system from a bootable CD/DVD-ROM</b>. Under <b caps_internal_Id="3f569bd8-5fb2-48b6-8722-dfe1cd64d91c">Media</b>, select <b caps_internal_Id="dcc18df8-66cb-40bc-aae9-d29a576cef28">Image file (iso)</b> and then click <b caps_internal_Id="9924023d-10ac-45c5-b06c-ebc14aced20e">Browse</b> to point to the .iso file.</td>
       </tr>
     </table>
-3.  When everything looks right, click **Finish**.
+3.  Wenn alles wie gewünscht aussieht, klicken Sie auf **Fertig stellen**.
 
-> **Note:** If you only have 32-bit version of Windows, you need to choose Generation 1 in the **Generation** section of the wizard.
-> Generation 2 VMs only support 64-bit operating systems.
+> **Hinweis:** Wenn Sie nur 32-Bit-Version von Windows haben, müssen Sie auf Generation 1 in der **Generation** Der Abschnitt des Assistenten.
+> VMs Generation 2 unterstützen nur 64-Bit-Betriebssysteme.
 > 
 
-##Next Step:
+##Nächster Schritt:
 
-[Step 5: Connect to the virtual machine and finish the installation](walkthrough_vmconnect.md)
+[Schritt 5: Herstellen einer Verbindung mit dem virtuellen Computer, und schließen Sie die installation](walkthrough_vmconnect.md)
 
 

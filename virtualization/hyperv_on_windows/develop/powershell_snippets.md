@@ -1,36 +1,37 @@
-ms.ContentId: 8DE9250B-556B-47BC-AD9A-8992B3D3D0F9
-title: PowerShell Snippets
+MS. ContentId: 8DE9250B-556B-47BC-AD9A-8992B3D3D0F9
+Titel: PowerShell-Ausschnitte
 
-#PowerShell Snippets
+#PowerShell-Ausschnitte
 
-PowerShell is an awesome scripting, automation, and management tool for Hyper-V.  Here is a toolbox for exploring some of the cool things it can do!
+Hinzufügen von diesem Satz für HO Kont Testverfahren.
+PowerShell ist ein großartiger Skripting, Automatisierung und Verwaltungstool für Hyper-V.  Hier ist eine Toolbox zum Erkunden einiger neuen Dinge, die sie ausführen kann.
 
-All Hyper-V management requires running as administrator so assume all scripts and snippets must be run as administrator from a Hyper-V Administrator account.
+Alle Hyper-V-Verwaltung ausgeführt werden müssen als Administrator angenommen alle Skripts und Ausschnitte als Administrator über ein Administratorkonto mit Hyper-V ausgeführt werden müssen.
 
-If you aren't sure if you have the right permissions, type `Get-VM` and if it runs with no errors, you're ready to go.
+Wenn Sie nicht sicher, ob Sie die richtigen Berechtigungen verfügen, geben Sie `Get-VM` und wenn es ohne Fehler ausgeführt wird, sind Sie bereit.
 
-##PowerShell Direct tools
+##PowerShell-Direct-tools
 
-All of the scripts and snippets in this section will rely on the following basics.
+Alle Skripts und Codeausschnitte in diesem Abschnitt wird auf den folgenden Grundlagen zu verlassen.
 
-**Requirements** :  
+**Anforderungen** :  
 
 *   PowerShell Direct.
-    Windows 10 guest and host OS.
+    Windows-10-Gast und Host-Betriebssystem.
 
-**Common Variables** :  
-`$VMName` -- this is a string with the VMName.
-See a list of available VMs with `Get-VM``$cred` -- Credential for the guest OS.
-Can be populated using `$cred = Get-Credential`
+**Allgemeine Variablen** :  
+`$VMName` – Dies ist eine Zeichenfolge mit der VMName.
+Eine Liste der verfügbaren virtuellen Maschinen mit `Get-VM``$cred` --Anmeldeinformationen für das Gastbetriebssystem.
+Kann mit gefüllt werden `$cred = Get-Credential`
 
-###Check if the guest has booted
+###Überprüfen Sie, ob der Gast gestartet wurde
 
-Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted.
+Hyper-V-Manager nicht Einblick in das Gastbetriebssystem, erhalten Sie dadurch häufig wird es schwierig herauszufinden, ob das Gastbetriebssystem gestartet wurde.
 
-Use this command to check whether the guest has booted.
+Verwenden Sie diesen Befehl zum Überprüfen, ob der Gast gestartet wurde.
 
-``` PowerShell
-if((Invoke-Command -VMName $VMName -Credential $cred {"Test"}) -ne "Test"){Write-Host "Not Booted"} else {Write-Host "Booted"}
+''' PowerShell
+Wenn ((Invoke-Command - VMName $VMName-Anmeldeinformationen $cred {"Test"}) - Ne "Test") {Write-Host "Nicht gestartet"} else {Write-Host "Booted"}
 
 
 ```
@@ -50,47 +51,47 @@ function waitForPSDirect([string]$VMName, $cred){
 
 ```
 
-**Outcome**  
-Prints a friendly message and locks until the connection to the VM succeeds.
-Succeeds silently.
+**Ergebnis**  
+Druckt eine Meldung und sperren, bis die Verbindung mit dem virtuellen Computer erfolgreich ist.
+Automatisch erfolgreich.
 
-###Script locking until the guest has a network
+###Skript sperren, bis der Gast ein Netzwerk verfügt.
 
-With PowerShell Direct it is possible to get connected to a PowerShell session inside a virtual machine before the virtual machine has received an IP address.
+Mit PowerShell Direct ist es möglich, eine Verbindung mit einer PowerShell-Sitzung auf einem virtuellen Computer, bevor Sie den virtuellen Computer hat eine IP-Adresse empfangen.
 
-``` PowerShell
+''' PowerShell
 
-#Wait for DHCP
+#Warten von DHCP
 
-while ((Get-NetIPAddress | ?
-AddressFamily -eq IPv4 | ?
-IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Dhcp") {sleep -Milliseconds 10}
+während ((Get-NetIPAddress |?
+AddressFamily - Eq IPv4 |?
+IPAddress - Ne 127.0.0.1). SuffixOrigin - Ne "Dhcp") {sleep - 10 Millisekunden}
 ```
 
-** Outcome **
-Locks until a DHCP lease is recieved.
-Since this script is not looking for a specific subnet or IP address, it works no matter what network configuration you're using.
-Succeeds silently.
+** Ergebnisses **
+Sperren, bis eine DHCP-Lease empfangen wird.
+Da dieses Skript nicht für ein bestimmtes Subnetz oder die IP-Adresse, sucht es funktioniert ganz gleich, welche Netzwerkkonfiguration verwenden Sie.
+Automatisch erfolgreich.
 
-##Managing credentials with PowerShell
+##Verwalten von Anmeldeinformationen mit PowerShell
 
-Hyper-V scripts frequently require handling credentials for one or more virtual machines, Hyper-V host, or both.
+Hyper-V-Skripts erfordern häufig Anmeldeinformationen für eine oder mehrere virtuelle Maschinen, Hyper-V-Host oder beides.
 
-There are multiple ways you can achieve this when working with PowerShell Direct or standard PowerShell remoting:
+Es gibt mehrere Methoden, die Sie dies erreichen können, bei der Arbeit mit PowerShell Direct oder standard-PowerShell-Remoting:
 
-1.  The first (and simplest) way is to have the same user credentials be valid in the host and the guest or local and remote host.
-    This is quite easy if you are logging in with your Microsoft account - or if you are in a domain environment.
-    In this scenario you can just run `Invoke-Command -VMName "test" {get-process}`.
-2.  Let PowerShell prompt you for credentials  
-    If your credentials do not match you will automatically get a credential prompt allowing you to provide the appropriate credentials for the virtual machine.
-3.  Store credentials in a variable for reuse.
-    Running a simple command like this:  
+1.  Die erste (und einfachste) Möglichkeit ist die gleichen Anmeldeinformationen, die in den Host und Gast oder lokale und remote-Host gültig sein.
+    Dies ist recht einfach, wenn Sie sich mit Ihrem Microsoft-Konto - Protokollierung sind oder wenn Sie in einer domänenumgebung.
+    In diesem Szenario können Sie nur ausführen `Invoke-Command -VMName "test" {get-process}`.
+2.  Lassen Sie PowerShell, die Sie zur Eingabe von Anmeldeinformationen  
+    Wenn Sie Ihre Anmeldeinformationen nicht entsprechen, erhalten Sie automatisch eine administratoranmeldeaufforderung, sodass Sie die entsprechenden Anmeldeinformationen für den virtuellen Computer bereitstellen.
+3.  Speichern von Anmeldeinformationen in einer Variablen für die Wiederverwendung.
+    Ausführen eines einfachen Befehls wie folgt:  
     ` PowerShell
     $localCred = Get-Credential
     `
-    And then running something like this:
-    ``` PowerShell
-    Invoke-Command -VMName "test" -Credential $localCred  {get-process}
+    Und dann etwa wie folgt:
+    ''' PowerShell
+    Invoke-Command - VMName "test" – Credential $localCred {Get-Process}
 
 
   ```
@@ -105,7 +106,7 @@ There are multiple ways you can achieve this when working with PowerShell Direct
 
   ```
 
-Grossly insecure - but useful for testing.
-Now you get no prompts at all in this session.
+Bemessen unsichere- jedoch hilfreich beim Testen.
+Jetzt können Sie keine Abfragen in dieser Sitzung.
 
 

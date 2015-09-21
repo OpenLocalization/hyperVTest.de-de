@@ -1,42 +1,41 @@
-ms.ContentId: 95FE9554-3968-4EED-B65D-E03F06A7598D
-title: Step 3: Create a virtual switch
+MS. ContentId: 95FE9554-3968-4EED-B65D-E03F06A7598D
+Titel: „Schritt 3: Erstellen eines virtuellen Switch
 
-#Step 3: Create a virtual switch
+#„Schritt 3: Erstellen eines virtuellen Switch
 
-A virtual switch allows you to create a network connection for your virtual machine.
-They are used just like the network adapter (NIC) on your physical computer.
+Ein virtueller Switch können Sie eine Netzwerkschnittstelle für den virtuellen Computer zu erstellen.
+Sie werden wie der Netzwerkadapter (NIC) auf dem physischen Computer verwendet.
 
-For this example, we are going to create an External switch.
-The external switch will allow your virtual machine to access the host machine's network adapter.
-If your host machine is connected to the internet, your virtual machine will be as well.
+In diesem Beispiel werden wir einen externen Switch erstellen.
+Der externe Switch ermöglicht Ihrem virtuellen Computer Zugriff auf den Host Netzwerkadapter des Computers.
+Wenn der Hostcomputer mit dem Internet verbunden ist, werden den virtuellen Computer auch.
 
-We'll also set the switch to allow the host to share this network adapter.
-This makes it so both the virtual machines and the host can use the same network.
+Wir müssen auch den Schalter ermöglicht es den Host, gemeinsames Verwenden dieses Netzwerkadapters festlegen.
+Dies macht es also sowohl die virtuellen Maschinen und Hosts kann im selben Netzwerk.
 
 
-1.  In Hyper-V manager, click **Virtual Switch Manager**.
+1.  Klicken Sie im Hyper-V-Manager auf **Manager für virtuelle Switches**.
     
     !(media/virtual_switch_manager1.png)
-2.  Select **New virtual network switch**.
+2.  Wählen Sie **Neues virtuelles Netzwerk-switch**.
     
     !(media/new_switch.png)
-3.  Select **External** and **Create Virtual Switch**.
+3.  Wählen Sie **Extern** und **Virtuellen Switch erstellen**.
     
     !(media/new_switch_createbutton.png)
-4.  Under **Name**, type **External**.
-5.  Under **External network**, select the correct network adapter (there will probably only be one option).
-6.  Select **Allow management operating system to share this network adapter** and click **OK**.
+4.  Klicken Sie unter **Name**geben Sie Folgendes ein: **Extern**.
+5.  Klicken Sie unter **Externes Netzwerk**, wählen Sie den richtigen Netzwerkadapter (es wird wahrscheinlich nur eine Option sein).
+6.  Wählen Sie **Lassen Sie gemeinsames Verwenden dieses Netzwerkadapters Verwaltungsbetriebssystem zu** , und klicken Sie auf **OK**.
     
     !(media/share_nic.png)
-7.  You'll get a message warning you that your network might disconnect while the virtual switch is created.
-    Just click **Yes**.
-    Your network will be unavailable for a short time.
+7.  Sie erhalten eine Meldung darüber angezeigt, dass Ihr Netzwerk während der Erstellung des virtuellen Switches trennt.
+    Klicken Sie einfach auf **Ja**.
+    Ihr Netzwerk wird für kurze Zeit nicht verfügbar sein.
     
     !(media/network_warning.png)
 
-##Next step:
+##Nächster Schritt:
 
-[Step 4: Create a Windows virtual machine from an .iso file](walkthrough_create_vm.md)
+[Schritt 4: Erstellen Sie eine virtuellen Windows-Maschine aus einer ISO-Datei](walkthrough_create_vm.md)
 
 
-n .iso file](walkthrough_create_vm.md)

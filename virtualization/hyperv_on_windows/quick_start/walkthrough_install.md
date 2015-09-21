@@ -1,45 +1,45 @@
-ms.ContentId: A6DD6776-614C-4D28-9B83-CB2EDFD263A3
-title: Step 2: Install Hyper-V on Windows 10
+MS. ContentId: A6DD6776-614C-4D28-9B83-CB2EDFD263A3
+Titel: Schritt 2: Installieren Sie Hyper-V auf Windows 10
 
-#Step 2: Install Hyper-V on Windows 10
+#Schritt 2: Installieren Sie Hyper-V auf Windows 10
 
-Hyper-V can be installed using [Programs and Features](#UsingProgramsandFeatures) or [Windows Powershell](#UsingPowerShell).
+Hyper-V kann mit installiert werden [Programme und Funktionen](#UsingProgramsandFeatures) oder [WindowsPowerShell](#UsingPowerShell).
 
-##Using Programs and Features
+##Über die Programme und Funktionen
 
-1.  Right-click the **Windows** button and then click **Programs and Features**.
+1.  Klicken Sie mit der rechten Maustaste auf **Windows** Schaltfläche, und klicken Sie dann auf **Programme und Funktionen**.
     
     !(media\programs_and_features.png)
-2.  Click **Turn Windows features on or off**.
-3.  Select **Hyper-V**, click **OK**
+2.  Klicken Sie im Menüband auf **Aktivieren Sie oder deaktivieren Sie Windows-features**.
+3.  Wählen Sie **Hyper-V**und anschließend auf **OK**
     
     !(media\hyper-v_feature_selected.png)
-4.  When the installation is finished, you'll need  to restart the computer.
+4.  Wenn die Installation abgeschlossen ist, müssen Sie den Computer neu starten.
     
     !(media\restart.png)
 
-##Using PowerShell
+##Mithilfe von PowerShell
 
-For more information, see the PowerShell help for [Enable-WindowsOptionalFeature](https://technet.microsoft.com/library/hh852172.aspx).
+Weitere Informationen finden Sie in der PowerShell-Hilfe für [Enable-WindowsOptionalFeature](https://technet.microsoft.com/library/hh852172.aspx).
 
-1.  Click on the **Windows** button and search for **Windows PowerShell**.
-2.  Right-click on **Windows PowerShell** and then click **Run as Administrator**.
-3.  At the Windows Powerhshell prompt, type the following and then press the **Enter** key:  
+1.  Klicken Sie auf der **Windows** Schaltfläche "und" Suchen **Windows PowerShell**.
+2.  Mit der rechten Maustaste auf **Windows PowerShell** und klicken Sie dann auf **Als Administrator ausführen**.
+3.  Windows-Powerhshell aufgefordert werden, geben Sie Folgendes ein, und drücken Sie dann die **EINGABE** Schlüssel:  
     ` PowerShell
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
     `
-4.  When the installation is finished, restart the computer.
+4.  Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 
-##How do I know Hyper-V installed correctly?
+##Wie weiß ich Hyper-V ordnungsgemäß installiert?
 
-After you restart your computer start the Hyper-V Manager tool.
+Nachdem Sie Ihre Computer starten das Tool Hyper-V-Manager neu gestartet.
 
-1.  Click on the **Windows** button and type **Hyper-V**.
-2.  Click on **Hyper-V Manager** in the list.
-3.  The Hyper-V Manager application should start.
+1.  Klicken Sie auf der **Windows** Schaltfläche und Typ **Hyper-V**.
+2.  Klicken Sie auf **Hyper-V-Manager** in der Liste.
+3.  Die Hyper-V-Manager-Anwendung startet.
 
-##Next Step
+##Als Nächstes
 
-[Step 3: Create a virtual switch](walkthrough_virtual_switch.md)
+[„Schritt 3: Erstellen eines virtuellen Switch](walkthrough_virtual_switch.md)
 
 

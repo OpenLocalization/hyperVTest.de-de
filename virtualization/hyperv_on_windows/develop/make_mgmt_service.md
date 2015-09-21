@@ -1,60 +1,61 @@
-ms.ContentId: 6C7EB25D-66FB-4B6F-AB4A-79D6BB424637
-title: Make a new management service
+MS. ContentId: 6C7EB25D-66FB-4B6F-AB4A-79D6BB424637
+Titel: Stellen Sie einen neue Management-Dienst
 
-#Make a new management service
+#Stellen Sie einen neue Management-Dienst
 
-This document introduces VM Services built on Hyper-V sockets and how to get started using them.
+In diesem Dokument werden die VM-Dienste, die auf Hyper-V-Sockets und die ersten Schritte mit ihnen aufbaut.
 
-##What is a VM Service?
+##Was ist eine VM-Dienst?
 
-VM Services are services that span the Hyper-V host and virtual machines running on the host.
+Hinzufügen von diesem Satz für HO Kont Testverfahren.
+VM-Dienste sind Dienste, die die Hyper-V-Hosts und virtuellen Maschinen auf dem Host ausgeführte umfassen.
 
-Hyper-V now (Windows 10 and Server 2016+) provides a non-network connection which allows you to create services spanning the host/virtual machine boundary while preserving Hyper-V’s fundamental requirements around tenant/hoster isolation, control, and diagnosable.
+Hyper-V jetzt (Windows 10 und Server 2016 +) bietet eine Verbindung von außerhalb des Netzwerks der Aufteilung der Host/virtual Machine-Grenze Beibehaltung Grundvoraussetzungen Hyper-V, um Mandanten/Hoster Isolation-Steuerelement erstellen kann und diagnosable.
 
-Hyper-V will continue to provide a base set of in-box services (integration services) for basics (such as time sync) and for common requests we receive, but now anyone can write and deploy a VM service as needed.
+Hyper-V bietet weiterhin einen Basissatz von in-Box-Dienste (Integrationsservices) für die Grundlagen (z. B. Synchronisierung) und häufige Anfragen, die wir erhalten, aber jetzt kann jeder schreiben und Bereitstellen einen VM-Dienst, wenn erforderlich.
 
-PowerShell Direct is an in-box example of a VM Service.
+PowerShell Direct ist ein integriertes Beispiel einer VM-Dienst.
 
-##What is a Hyper-V socket?
+##Was ist ein Socket Hyper-V?
 
-Hyper-V sockets are TCP-like sockets with no dependence on networking.
-Using Hyper-V sockets, services can run independently of the networking stack and all data flow stays on host memory.
+Hyper-V-Sockets sind wie TCP-Sockets mit keine Abhängigkeit vom Netzwerk.
+Verwenden von Hyper-V-Sockets, Dienste können unabhängig von den Netzwerkstapel ausgeführt und alle Datenfluss bleibt im Arbeitsspeicher des Hosts.
 
-##System Requirements
+##Systemanforderungen
 
-**Supported Host OS**
+**Unterstützte Host-BS**
 
-*   Windows 10
-*   Windows Server Technical Preview 3
-*   Future releases (Server 2016 +)
+*   Windows-10
+*   Windows Server-Technical Preview 3
+*   Zukünftige Versionen (Server 2016 +)
 
-**Supported Guest OS**
+**Unterstützte Gastbetriebssysteme**
 
-*   Windows 10
-*   Windows Server Technical Preview 3
-*   Future releases (Server 2016 +)
+*   Windows-10
+*   Windows Server-Technical Preview 3
+*   Zukünftige Versionen (Server 2016 +)
 *   Linux
 
-##Capabilities and Limitations
+##Stärken und Schwächen
 
-Kernel mode or user mode  
-Data stream only    
-No block memory so not the best for backup/video  
+Kernel-Modus oder im Benutzermodus  
+Nur-Datenstrom    
+Kein Block Arbeitsspeicher also nicht optimal für Backup-video  
 
-##Getting started
+##Erste Schritte
 
-This guide assumes you're familiar with socket programming in C/C++.
+Dieses Handbuch wird davon ausgegangen, dass Sie mit der Socket in C/C++-Programmierung vertraut sind.
 
-###Step 1 - Register your service on the Hyper-V host
+###Schritt 1: Registrieren Sie den Dienst auf dem Hyper-V-host
 
-In order to use a custom service integrated with Hyper-V, the new service must be registered with the Hyper-V Host's registry.
+Um einen benutzerdefinierten Dienst integriert mit Hyper-V verwenden, muss der neue Dienst mit dem Hyper-V-Host-Registrierung registriert werden.
 
-By registering the service in the registry, you get:
+Durch die Registrierung des Diensts in der Registrierung erhalten Sie folgende Aktionen ausführen:
 
-*   WMI management for enable, disable, and listing available services
-*   Onto the list of services allowed to communicate with virtual machines directly.
+*   WMI-Verwaltung für aktivieren, deaktivieren und die verfügbaren Dienste auflisten
+*   Klicken Sie auf die Liste der Dienste, die direkt mit virtuellen Computern kommunizieren.
 
-** Registry location and information **
+** Registrierungsspeicherort und Informationen **
 
 
 ```
@@ -62,18 +63,18 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\V
 
 ```
 
-In this registry location, you'll see several GUIDS.
-Those are our in-box services.
+In diesem Registrierungsspeicherort sehen Sie mehrere GUIDS.
+Unsere integrierte Dienste sind.
 
-Information in the registry per service:
+Die Informationen in der Registrierung nach Dienst:
 
 *   `Service GUID`
     
-    *   `ElementName (REG_SZ)` -- this is the service's friendly name
+    *   `ElementName (REG_SZ)` – Dies ist der Dienst-Anzeigename
 
-To register your own service, create a new registry key using your own GUID and friendly name.
+Um einen eigenen Dienst zu registrieren, erstellen Sie einen neuen Registrierungsschlüssel, die über eine eigene GUID und den Anzeigenamen.
 
-The registry entry will look like this:
+Der Registrierungseintrag sieht folgendermaßen aus:
 
 
 ```
@@ -86,9 +87,9 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 ```
 
 
-> ** Tip: **  To generate a GUID in PowerShell and copy it to the clipboard, run:  
-> ``` PowerShell
-> [System.Guid]::NewGuid().ToString() | clip.exe
+> ** Tipp: **  Zum Generieren einer GUID in PowerShell und in die Zwischenablage zu kopieren, führen Sie Folgendes aus:  
+> ''' PowerShell
+> [System.Guid]::NewGuid(). ToString() | Clip.exe
 > 
 
 
@@ -110,19 +111,19 @@ Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the
 
 ```
 
-*   Service ID – GUID under which the service is registered in the Hyper-V host registry.
-    See [Registering a New Service](#GettingStarted).
+*   Dienst-ID-GUID, die unter dem der Dienst in der Hyper-V-Host-Registrierung registriert ist.
+    Unter [Registrieren eines neuen Diensts](#GettingStarted).
 
-For connections from a service on the host to the service on a VM:  
-VMID and Service ID
-For connections from a service on a VM to the service on the host:  
-Zero GUID and Service ID
+Für Verbindungen mit einem Dienst auf dem Host an den Dienst auf einem virtuellen Computer:  
+VMID und die Dienst-ID
+Für Verbindungen mit einem Dienst auf einem virtuellen Computer mit dem Dienst auf dem Host:  
+0 (null) GUID und die Dienst-ID
 
-##Supported socket commands
+##Unterstützte Socket-Befehle
 
 Socket()
-Bind()
-Connect ()
+BIND()
+Verbinden)
 Send()
 Listen()
 Accept()

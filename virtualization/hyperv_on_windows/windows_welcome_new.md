@@ -1,12 +1,12 @@
-ms.ContentId: 09eacb3a-bcd2-4724-9c73-6d47ec06f385
-title: Hyper-V on Windows 10
+MS. ContentId: 09eacb3a-bcd2-4724-9c73-6d47ec06f385
+Titel: Hyper-V auf Windows 10
 
-#Hyper-V on Windows 10
+#Hyper-V auf Windows 10
 
-Hyper-V lets you run more than one 32-bit or 64-bit x86 operating system at the same time on the same computer.
-Instead of running directly on the computer’s hardware, the operating systems run inside of a virtual machine (VM).
+Hyper-V können Sie mehr als eine 32-Bit oder 64-Bit-X 86-Betriebssystem gleichzeitig auf demselben Computer ausführen.
+Anstatt direkt auf die Hardware des Computers ausgeführt werden, führen Sie die Betriebssysteme innerhalb eines virtuellen Computers (VM).
 
-Hyper-V in Windows is sometimes referred to as Client Hyper-V.
+Hyper-V in Windows wird manchmal als Hyper-V für Clients bezeichnet.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
   <tr valign="top">
@@ -71,12 +71,12 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
     </td>
   </tr>
 </table>
-**Important:** You must license the software running on each of the guest virtual machines according to their operating system requirements.
+**Wichtig:** Sie müssen auf jedem der Gastcomputer entsprechend ihren Anforderungen Betriebssystem ausgeführten Software lizenzieren.
 
-Here are a few links to other versions of Hyper-V:
+Hier sind einige Links zu anderen Versionen von Hyper-v:
 
-*   [Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/en-us/library/mt126117.aspx)
-*   [Hyper-V on Windows Server 2012 R2](https://technet.microsoft.com/en-us/library/hh831531.aspx)
+*   [Hyper-V auf Windows Server 2016: Technische Vorschau](https://technet.microsoft.com/en-us/library/mt126117.aspx)
+*   [Hyper-V unter Windows Server 2012 R2](https://technet.microsoft.com/en-us/library/hh831531.aspx)
 *   [Microsoft Hyper-V Server](https://technet.microsoft.com/library/hh923062.aspx)
 
 
