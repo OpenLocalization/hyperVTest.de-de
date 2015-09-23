@@ -8,8 +8,10 @@ Wenn Sie virtueller Maschinen auf Ihren Windows-10-Host, die ursprünglich mit H
 Zum Aktualisieren der Version der Konfiguration der virtuellen Computer herunterfahren Sie, und wählen Sie Upgrade Konfiguration des virtuellen Computers im Hyper-V-Manager.
 Sie können auch einen erhöhten Berechtigungen öffnen Windows PowerShell-Befehlszeile, und geben:
 
- ```PowerShell
+ '''PowerShell
 Update-VmVersion < Vmname > | < Vmobject >
+
+
 ```
 
 
